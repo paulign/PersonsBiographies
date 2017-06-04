@@ -17,7 +17,7 @@ export class ManageUsersComponent {
 
   constructor(private loginServ: LoginService, private router: Router) { }
 
-  ngOnInit() {
+  /*ngOnInit() {
     this.getUsers();
   }
 
@@ -43,13 +43,13 @@ export class ManageUsersComponent {
 
   public getUser(selected: User) {
     window.scrollTo(0, 0);
-    console.log(selected._id)
-    this.router.navigate(["admin/users", selected._id]);
+    console.log(selected.id)
+    this.router.navigate(["admin/users", selected.id]);
   }
 
   goToList() {
     window.scrollTo(0, 0);
     this.router.navigate(["/persons"]);
-  }
+  }*/
 
 }

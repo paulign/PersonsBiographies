@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
   }
 
   private goNext() {
-    let redirect = this.service.redirectUrl ? this.service.redirectUrl : "/home";
+    let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : "/home";
     window.scrollTo(0, 0);
     this.router.navigate([redirect]);
   }
