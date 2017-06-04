@@ -22,7 +22,7 @@ export class LoginService {
     headers.append('Content-Type','application/json');
     return this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
       .map((response: Response) => {
-        let user = response.json();      
+        response.json();      
       })
       .catch(this.handleError);
   }
