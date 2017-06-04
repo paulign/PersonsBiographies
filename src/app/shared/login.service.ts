@@ -20,11 +20,11 @@ export class LoginService {
   public login(currentUser) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let user = this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
+    return this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
       .map((response: Response) => {
-        let user = response.json();      })
+        let user = response.json();      
+      })
       .catch(this.handleError);
-    return user;
   }
 
 
