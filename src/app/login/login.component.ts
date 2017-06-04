@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   public doLogin() {
     this.currentUser = {
       username: this.loginForm.value.username,
