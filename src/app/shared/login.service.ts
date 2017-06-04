@@ -38,7 +38,7 @@ export class LoginService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type','application/json');
-    return this.http.get(this.http + "profile", {headers: headers})
+    return this.http.get(this.http + "/profile", {headers: headers})
       .map(res => res.json());
   }
 
