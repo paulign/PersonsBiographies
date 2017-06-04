@@ -16,20 +16,29 @@ export class AppComponent {
         this.isIn = bool === false ? true : false; 
     }
 
-  constructor(private loginServ: LoginService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) {
+   }
+
+   ngOnInit () {
+     this.loginService.getLoggedUserProfile().subscribe(profile => {
+      this.currentUser = profile.user;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
    }
 
 
   public login() {
-    if (this.router.routerState.snapshot.url != "/login") this.loginServ.redirectUrl = this.router.routerState.snapshot.url;
-    else this.loginServ.redirectUrl = "/home";
+    if (this.router.routerState.snapshot.url != "/login") this.loginService.redirectUrl = this.router.routerState.snapshot.url;
+    else this.loginService.redirectUrl = "/home";
     window.scrollTo(0, 0);
     this.router.navigate(["/login"]);
   }
 
   public logout() {
-    this.loginServ.logout();
+    this.loginService.logout();
     window.scrollTo(0, 0);
     this.router.navigate(["/home"])
   }
@@ -40,8 +49,8 @@ export class AppComponent {
   }
   
   public signUp() {
-    if (this.router.routerState.snapshot.url != "/login") this.loginServ.redirectUrl = this.router.routerState.snapshot.url;
-    else this.loginServ.redirectUrl = "/home";
+    if (this.router.routerState.snapshot.url != "/login") this.loginService.redirectUrl = this.router.routerState.snapshot.url;
+    else this.loginService.redirectUrl = "/home";
     window.scrollTo(0, 0);
     this.router.navigate(["/signup"]);
   }

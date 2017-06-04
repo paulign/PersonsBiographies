@@ -3,80 +3,69 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { User } from '../shared/user';
-import { UserResponsed } from '../shared/userResponsed'
+import { UserResponsed } from '../shared/userResponsed';
+import {tokenNotExpired} from 'angular2-jwt';
 
 
 @Injectable()
 export class LoginService {
   private url = "/users";
-  isLoggedIn: boolean = false;
   redirectUrl: string;
+  authToken: any;
   loggedUser: User;
-  loggedUserResponsed: UserResponsed;
-  userAvatar: string = "src/app/images/user.png";
+  userAvatar: string = "./src/app/images/user.png";
 
   constructor(private http: Http) { }
 
-  public login(currentUser): Observable<UserResponsed> {
-    let user = this.http.post(this.url + "/authenticate", currentUser)
+  public login(currentUser) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let user = this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
       .map((response: Response) => {
-        // login successful if there's a jwt token in the response
-        let user = response.json();
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      })
+        let user = response.json();      })
       .catch(this.handleError);
     return user;
   }
 
-  public logout() {
-    this.isLoggedIn = false;
-    localStorage.removeItem('currentUser');
+
+  getLoggedUserProfile(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type','application/json');
+    return this.http.get(this.http + "profile", {headers: headers})
+      .map(res => res.json());
   }
 
-  public getUser(_id): Observable<User> {
-    let user = this.http.get(this.url + "/" + _id)
-      .map(this.extractUser)
-      .catch(this.handleError);
-    return user;
-  }
-
-  public getUsers(): Observable<[User]> {
-    let users = this.http.get(this.url, this.jwt())
-      .map(this.extractUsers)
-      .catch(this.handleError)
-    return users
-  }
 
   public addUser(newUser) {
-    let user = this.http.post(this.url + "/register", newUser, this.jwt())
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let user = this.http.post(this.url + "/register", newUser, {headers: headers})
+    .map(res => res.json());
     return user
   }
 
-  public updateUser(currentUser: User) {
-    let user = this.http.post(this.url + "/" + currentUser._id, currentUser, this.jwt())
-    return user
+  storeUserData(token, user){
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.loggedUser = user;
   }
 
-  public deleteUser(user: User) {
-    return this.http.delete(this.url + "/" + user._id, this.jwt())
+    loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
   }
 
-  private extractUser(response: Response) {
-    let res = response.json();
-    let user = res;
-    return user;
+  loggedIn(){
+    return tokenNotExpired();
   }
 
-  private extractUsers(response: Response) {
-    let res = response.json();
-    let users: User[] = [];
-    for (let i = 0; i < res.length; i++) {
-      users.push(new User(res[i].username, res[i]._id));
-    }
-    return users;
+  logout(){
+    this.authToken = null;
+    this.loggedUser = null;
+    localStorage.clear();
   }
 
   private handleError(error: any, cought: Observable<any>): any {
@@ -94,13 +83,6 @@ export class LoginService {
     return Observable.throw(message);
   }
 
-  private jwt() {
-    // create authorization header with jwt token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-      return new RequestOptions({ headers: headers });
-    }
-  }
+ 
 
 }

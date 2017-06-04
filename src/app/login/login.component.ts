@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     }
   };
 
-  constructor(private service: LoginService,
+  constructor(private loginService: LoginService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router) { }
@@ -58,16 +58,19 @@ export class LoginComponent implements OnInit {
   }
 
   public doLogin() {
-    this.currentUser = this.loginForm.value
-    this.service.login(this.currentUser)
+    this.currentUser.username = this.loginForm.value.username;
+    this.currentUser.password = this.loginForm.value.password;
+    this.loginService.login(this.currentUser)
       .subscribe(
-      user => {
-        this.service.isLoggedIn = true;
-        this.goNext();
-      },
-      error => this.errorMessage = "Error: Incorrect login or password. Try again!"
-      );
-
+      data => {
+        if (data.success) {
+          this.loginService.storeUserData(data.token, data.user);
+          this.goNext();
+        }
+        else {
+          this.errorMessage = "Error: Something was wrong. Try again!";
+        }
+      });
   }
 
   private goNext() {

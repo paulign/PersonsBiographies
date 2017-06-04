@@ -11,7 +11,7 @@ import { LoginService } from '../shared/login.service';
 })
 export class SignUpComponent implements OnInit {
 
-  currentUser: {};
+  currentUser: User;
   errorMessage: string;
   signUpForm: FormGroup;
   formErrors = {
@@ -89,13 +89,18 @@ export class SignUpComponent implements OnInit {
   }
 
   public doSignUp() {
-    this.service.addUser(this.signUpForm.value)
+    this.currentUser.username = this.signUpForm.value.username;
+    this.currentUser.password = this.signUpForm.value.password;
+    this.service.addUser(this.currentUser)
       .subscribe(
-      user => {
+      data => {
+        if(data.success){
         this.goNext();
-      },
-      error => this.errorMessage = "Error: Incorrect login or password. Try again!"
-      );
+      }
+      else {
+        this.errorMessage = "Error: Something was wrong. Try again!"
+      }
+      });
   }
 
   private goNext() {

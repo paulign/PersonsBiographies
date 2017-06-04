@@ -12,11 +12,11 @@ export class LoginGuard {
     constructor(private loginService: LoginService, private router: Router) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (this.loginService.isLoggedIn) {
+        if (this.loginService.loggedIn()) {
             return true;
         } 
         
-        else if (!this.loginService.isLoggedIn) {
+        else if (!this.loginService.loggedIn) {
             this.loginService.redirectUrl = state.url;
             this.router.navigate(["/login"]);
             return false;
