@@ -43,8 +43,8 @@ export class LoginService {
   }
 
   public storeUserData(token, user){
-    window.localStorage.setItem('id_token', token);
-    window.localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.loggedUser = user;
   }
@@ -61,7 +61,7 @@ export class LoginService {
   logout(){
     this.authToken = null;
     this.loggedUser = null;
-    window.localStorage.clear();
+    localStorage.clear();
   }
 
   private handleError(error: any, cought: Observable<any>): any {
