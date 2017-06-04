@@ -89,9 +89,7 @@ export class SignUpComponent implements OnInit {
   }
 
   public doSignUp() {
-    this.currentUser.username = this.signUpForm.value.username;
-    this.currentUser.password = this.signUpForm.value.password;
-    this.service.addUser(this.currentUser)
+    this.service.addUser(this.signUpForm.value)
       .subscribe(
       data => {
         if(data.success){
