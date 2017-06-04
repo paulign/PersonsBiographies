@@ -62,13 +62,14 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.currentUser)
       .subscribe(
       data => {
-        if (data.success) {
+        console.log(data);
+        /*if (data.success) {
           this.loginService.storeUserData(data.token, data.user);
           this.goNext();
         }
         else {
           this.errorMessage = "Error: Something was wrong. Try again!";
-        }
+        }*/
       });
   }
 
