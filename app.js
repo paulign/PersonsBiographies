@@ -30,7 +30,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
