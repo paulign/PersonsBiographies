@@ -21,7 +21,7 @@ export class LoginService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
-      .map((response: Response) => {
+      .map(response => {
         response.json();      
       })
       .catch(this.handleError);

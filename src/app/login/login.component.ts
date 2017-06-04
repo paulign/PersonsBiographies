@@ -12,7 +12,7 @@ import { LoginService } from '../shared/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  currentUser: User;
+  currentUser;
   errorMessage: string;
   loginForm: FormGroup;
 
@@ -58,7 +58,11 @@ export class LoginComponent implements OnInit {
   }
 
   public doLogin() {
-    this.currentUser = this.loginForm.value;
+    this.currentUser = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
+
     this.loginService.login(this.currentUser)
       .subscribe(
       data => {
