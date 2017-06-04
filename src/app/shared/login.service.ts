@@ -33,7 +33,7 @@ export class LoginService {
     return user
   }
 
-  getLoggedUserProfile(){
+  public getLoggedUserProfile(){
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
@@ -42,7 +42,7 @@ export class LoginService {
       .map(res => res.json());
   }
 
-  storeUserData(token, user){
+  public storeUserData(token, user){
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;

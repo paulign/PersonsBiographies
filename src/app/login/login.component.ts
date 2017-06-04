@@ -66,8 +66,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.currentUser)
       .subscribe(
       data => {
-        console.log(data);
         if (data.success) {
+          console.log(data);
           this.loginService.storeUserData(data.token, data.user);
           this.goNext();
         }
