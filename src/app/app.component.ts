@@ -24,7 +24,8 @@ export class AppComponent {
    }
 
    test() {
-          console.log(localStorage.getItem('id_token'));
+     localStorage.setItem("test", "test");
+          /*console.log(localStorage.getItem('id_token'));
      this.loginService.getLoggedUserProfile().subscribe(profile => {
        console.log(profile);
       this.currentUser = profile.user;
@@ -32,7 +33,7 @@ export class AppComponent {
     err => {
       console.log(err);
       return false;
-    });
+    });*/
    }
 
 
