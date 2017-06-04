@@ -1,0 +1,17 @@
+.search {
+    margin-bottom: 10px;
+}
+
+.thumbnail {
+    min-height: 700px;
+}
+
+.admin-button {
+    visibility: hidden;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.thumbnail:hover .admin-button {
+    visibility: visible;
+}

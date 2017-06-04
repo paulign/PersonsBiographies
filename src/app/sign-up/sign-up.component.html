@@ -1,0 +1,33 @@
+<div class="contain" *ngIf="signUpForm">
+  <form [formGroup]="signUpForm" (ngSubmit)="doSignUp()">
+    <div class="form-group">
+      <label for="username">Enter your login</label>
+      <input id="username" type="text" class="form-control" formControlName="username">
+      <div *ngIf="formErrors.username" class="alert alert-danger">
+				{{ formErrors.username }}
+			</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Enter your password</label>
+      <input id="password" type="password" class="form-control" formControlName="password">
+      <div *ngIf="formErrors.password" class="alert alert-danger">
+				{{ formErrors.password }}
+			</div>
+    </div>
+
+    <div class="form-group">
+      <label for="password2">Confirm your password</label>
+      <input id="password2" type="password" class="form-control" formControlName="password2">
+      <div *ngIf="formErrors.password2" class="alert alert-danger">
+				{{ formErrors.password2 }}
+			</div>
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+
+    <input type="button" class="btn btn-default" (click)="goNext()" value="Cancel" />
+    <input type="submit" class="btn btn-primary" value="Sign up" [disabled]="signUpForm.invalid" />
+  </form>
+</div>

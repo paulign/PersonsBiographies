@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-xs-12" *ngIf="loginServ.isAdmin">
+        <span class="glyphicon glyphicon-trash pull-right admin-button" (click)="deletePerson(person)"></span>
+        <span class="glyphicon glyphicon-pencil pull-right admin-button" (click)="editPerson(person)"></span>
+      </div>
+      <div class="col-xs-12">
+        <h1 class="text-center">{{person?.fullName}}</h1>
+        <h2 class="text-center"><em>{{person?.title}}</em></h2>
+        <div class="thumbnail"><img src="{{person?.photoSrc}}">
+          <div class="caption text-center">photo.</div>
+        </div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <h3>Here's a time line of {{person?.fullName}}'s life:</h3>
+          <ul>
+            <li *ngFor="let step of person?.steps | sort:'year'"><strong>{{step.year}}</strong> - {{step.event}}</li>
+          </ul>
+          <blockquote class="blockquote-reverse">
+            <p>"{{person?.quote}}"</p>
+            <footer><cite>Someone says</cite></footer>
+          </blockquote>
+          <h3>If you have time, you should read more about this incredible human being on his <a href="{{person?.wikiLink}}"
+              target="_blank">Wikipedia entry</a>.</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
