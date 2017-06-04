@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
       data => {
         if (data.success) {
-          console.log(data);
           this.loginService.storeUserData(data.token, data.user);
           this.goNext();
         }
