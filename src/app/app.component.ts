@@ -24,7 +24,7 @@ export class AppComponent {
    }
 
    test() {
-     localStorage.setItem("test", "test");
+     window.localStorage.setItem("test", "test");
           /*console.log(localStorage.getItem('id_token'));
      this.loginService.getLoggedUserProfile().subscribe(profile => {
        console.log(profile);
