@@ -92,6 +92,7 @@ export class SignUpComponent implements OnInit {
     this.service.addUser(this.signUpForm.value)
       .subscribe(
       data => {
+        console.log(data);
         if(data.success){
         this.goNext();
       }

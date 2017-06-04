@@ -20,13 +20,18 @@ export class LoginService {
   public login(currentUser) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
-      .map(response => {
-        response.json();      
-      })
-      .catch(this.handleError);
+    let user = this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
+      .map(response => response.json());
+      return user;
   }
 
+  public addUser(newUser) {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let user = this.http.post(this.url + "/register", newUser, {headers: headers})
+    .map(res => res.json());
+    return user
+  }
 
   getLoggedUserProfile(){
     let headers = new Headers();
@@ -35,15 +40,6 @@ export class LoginService {
     headers.append('Content-Type','application/json');
     return this.http.get(this.http + "profile", {headers: headers})
       .map(res => res.json());
-  }
-
-
-  public addUser(newUser) {
-    let headers = new Headers();
-    headers.append('Content-Type','application/json');
-    let user = this.http.post(this.url + "/register", newUser, {headers: headers})
-    .map(res => res.json());
-    return user
   }
 
   storeUserData(token, user){
