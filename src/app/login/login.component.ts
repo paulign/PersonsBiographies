@@ -67,13 +67,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
       data => {
         console.log(data);
-        /*if (data.success) {
+        if (data.success) {
           this.loginService.storeUserData(data.token, data.user);
           this.goNext();
         }
         else {
           this.errorMessage = "Error: Something was wrong. Try again!";
-        }*/
+        }
       });
   }
 
