@@ -26,13 +26,13 @@
                 </li>
             </ul>
 
-            <div *ngIf="currentUser" class="navbar-right">
-                <p>You logged in as <strong>{{currentUser.username}}</strong>
+            <div *ngIf="loginService.loggedUser" class="navbar-right">
+                <p>You logged in as <strong>{{loginService.loggedUser.username}}</strong>
                     <button class="btn btn-default btn-xs" (click)="logout()">Logout</button>
                 </p>
-                <p>Your accounts id: <strong>{{currentUser.id}}</strong>
+                <p>Your accounts id: <strong>{{loginService.loggedUser.id}}</strong>
             </div>
-            <div *ngIf="!currentUser" class="navbar-right">
+            <div *ngIf="!loginService.loggedUser" class="navbar-right">
                 <p>Please, <strong>log in</strong> to have more rights <button class="btn btn-default btn-xs" (click)="login()">Login</button></p>
                 <p>Don't have account? <button class="btn btn-default btn-xs" (click)="signUp()">Sign Up</button>
             </div>

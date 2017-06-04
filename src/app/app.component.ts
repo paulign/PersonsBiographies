@@ -20,7 +20,9 @@ export class AppComponent {
    }
 
    ngOnInit () {
+     console.log(localStorage.getItem('id_token'));
      this.loginService.getLoggedUserProfile().subscribe(profile => {
+       console.log(profile);
       this.currentUser = profile.user;
     },
     err => {
