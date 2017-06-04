@@ -58,8 +58,7 @@ export class LoginComponent implements OnInit {
   }
 
   public doLogin() {
-    this.currentUser.username = this.loginForm.value.username;
-    this.currentUser.password = this.loginForm.value.password;
+    this.currentUser = this.loginForm.value;
     this.loginService.login(this.currentUser)
       .subscribe(
       data => {
