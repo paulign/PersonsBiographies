@@ -54,7 +54,7 @@ export class BiographiesService {
                 res[i].photoSrc = "src/app/images/person2.png";
             }
 
-            persons.push(new Person(res[i]._id, res[i].fullName, res[i].title, res[i].steps, res[i].quote, res[i].photoSrc, res[i].wikiLink));
+            persons.push(new Person(res[i].person._id, res[i].person.fullName, res[i].person.title, res[i].person.steps, res[i].person.quote, res[i].person.photoSrc, res[i].person.wikiLink));
         }
         return persons;
     }
