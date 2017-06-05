@@ -4,7 +4,7 @@ import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/ro
 import { Observable } from "rxjs/Observable";
 import { User } from '../shared/user';
 import { UserResponsed } from '../shared/userResponsed';
-import {tokenNotExpired} from 'angular2-jwt';
+import { tokenNotExpired } from 'angular2-jwt';
 
 
 @Injectable()
@@ -19,46 +19,48 @@ export class LoginService {
 
   public login(currentUser) {
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
-    let user = this.http.post(this.url + "/authenticate", currentUser, {headers: headers})
+    headers.append('Content-Type', 'application/json');
+    let user = this.http.post(this.url + "/authenticate", currentUser, { headers: headers })
       .map(response => response.json());
-      return user;
+    return user;
   }
 
   public addUser(newUser) {
     let headers = new Headers();
-    headers.append('Content-Type','application/json');
-    let user = this.http.post(this.url + "/register", newUser, {headers: headers})
-    .map(res => res.json());
+    headers.append('Content-Type', 'application/json');
+    let user = this.http.post(this.url + "/register", newUser, { headers: headers })
+      .map(res => res.json());
     return user
   }
 
-  public getLoggedUserProfile(){
+  public getLoggedUserProfile() {
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
-    headers.append('Content-Type','application/json');
-    return this.http.get(this.http + "/profile", {headers: headers})
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.http + "/profile", { headers: headers })
       .map(res => res.json());
   }
 
-  public storeUserData(token, user){
+  public storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.loggedUser = user;
   }
 
-    loadToken(){
-    const token = localStorage.getItem('id_token');
-    this.authToken = token;
+  loadToken() {
+    if (localStorage.getItem('id_token')) {
+      const token = localStorage.getItem('id_token');
+      this.authToken = token;
+    }
   }
 
-  loggedIn(){
+  loggedIn() {
     return tokenNotExpired();
   }
 
-  logout(){
+  logout() {
     this.authToken = null;
     this.loggedUser = null;
     localStorage.clear();
@@ -79,6 +81,6 @@ export class LoginService {
     return Observable.throw(message);
   }
 
- 
+
 
 }

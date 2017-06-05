@@ -20,8 +20,7 @@ export class AppComponent {
    }
 
    ngOnInit () {
-     /*localStorage.setItem("test", "value");*/
-     /*console.log(localStorage.getItem('id_token'));
+     console.log(localStorage.getItem('id_token'));
      this.loginService.getLoggedUserProfile().subscribe(profile => {
        console.log(profile);
       this.loginService.loggedUser = profile.user;
@@ -29,7 +28,7 @@ export class AppComponent {
     err => {
       console.log(err);
       return false;
-    });*/
+    });
    }
 
 
