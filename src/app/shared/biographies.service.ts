@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class BiographiesService {
     private url = "/api/persons";
+    defaultPhotoSrc = "http://images.clipartpanda.com/person-clipart-symbol-person-clipart.png";
 
     constructor(private http: Http) { }
 
@@ -49,6 +50,10 @@ export class BiographiesService {
         let res = response.json();
         let persons: Person[] = [];
         for (let i = 0; i < res.length; i++) {
+            if (res[i].photoSrc == null) {
+                res[i].photoSrc = "http://images.clipartpanda.com/person-clipart-symbol-person-clipart.png";
+            }
+
             persons.push(new Person(res[i]._id, res[i].fullName, res[i].title, res[i].steps, res[i].quote, res[i].photoSrc, res[i].wikiLink));
         }
         return persons;
@@ -56,6 +61,9 @@ export class BiographiesService {
 
     private extractPerson(response: Response) {
         let res = response.json();
+        if (res.photoSrc == null) {
+            res.photoSrc = "http://images.clipartpanda.com/person-clipart-symbol-person-clipart.png";
+        }
         let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, res.person.photoSrc, res.person.wikiLink);
         return person;
     }

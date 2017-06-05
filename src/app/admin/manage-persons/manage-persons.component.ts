@@ -66,6 +66,9 @@ export class ManagePersonsComponent {
         this.service.getPerson(id).subscribe(
           person => {
             this.currentPerson = person;
+            if (this.currentPerson.photoSrc == this.service.defaultPhotoSrc) {
+              this.currentPerson.photoSrc = null;
+            }
             this.personForm.patchValue(this.currentPerson);
             this.steps = person.steps;
           },
