@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../models/person');
 
-app.get('/persons', function(req, res) {
+router.get('/persons', function(req, res) {
     return Person.find(function (err, persons) {
         if (!err) {
             return res.send(persons);
@@ -14,7 +14,7 @@ app.get('/persons', function(req, res) {
     });
 });
 
-app.post('/persons', function(req, res) {
+router.post('/', function(req, res) {
     var person = new ArticleModel({
         fullName: req.body.fullName,
         title: req.body.title,
@@ -42,7 +42,7 @@ app.post('/persons', function(req, res) {
     });
 });
 
-app.get('/persons/:id', function(req, res) {
+router.get('/:id', function(req, res) {
     return Person.findById(req.params.id, function (err, person) {
         if(!person) {
             res.statusCode = 404;
@@ -58,7 +58,7 @@ app.get('/persons/:id', function(req, res) {
     });
 });
 
-app.put('/persons/:id', function (req, res){
+router.put('/:id', function (req, res){
     return Person.findById(req.params.id, function (err, article) {
         if(!person) {
             res.statusCode = 404;
@@ -90,7 +90,7 @@ app.put('/persons/:id', function (req, res){
     });
 });
 
-app.delete('/persons/:id', function (req, res){
+router.delete('/:id', function (req, res){
     return Person.findById(req.params.id, function (err, person) {
         if(!person) {
             res.statusCode = 404;
