@@ -16,7 +16,7 @@ export class AppComponent {
         this.isIn = bool === false ? true : false; 
     }
 
-  constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public loginService: LoginService, public router: Router, public activatedRoute: ActivatedRoute) {
    }
 
    ngOnInit () {
