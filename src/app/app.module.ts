@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ManageUserDetailsComponent } from './admin/manage-users/manage-user-details/manage-user-details.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     HomeComponent,
     SignUpComponent,
     ManageUserDetailsComponent,
-    NavbarComponent
+    NavbarComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
