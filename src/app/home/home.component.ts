@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
 appDescripion: Array<string> = [
   "The app with people who changed the world.", 

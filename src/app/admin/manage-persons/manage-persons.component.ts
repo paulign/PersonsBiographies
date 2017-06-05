@@ -18,10 +18,10 @@ export class ManagePersonsComponent {
   year;
   event;
 
-  constructor(private service: BiographiesService,
-    private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router) { }
+  constructor(public service: BiographiesService,
+    public activatedRoute: ActivatedRoute,
+    public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
     this.buildForm();

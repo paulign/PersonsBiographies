@@ -15,9 +15,9 @@ export class ManageUserDetailsComponent {
   errorMessage: string;
   userAvatar = this.loginServ.userAvatar;
   
-  constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private loginServ: LoginService) { }
+  constructor(public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public loginServ: LoginService) { }
 
   /*ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {

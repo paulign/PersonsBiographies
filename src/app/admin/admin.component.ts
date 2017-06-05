@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 })
 export class AdminComponent {
 
-  constructor(private router: Router ) {  }
+  constructor(public router: Router ) {  }
 
   goToList() {
     this.router.navigate(["/persons"]);

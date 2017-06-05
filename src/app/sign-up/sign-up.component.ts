@@ -36,9 +36,9 @@ export class SignUpComponent implements OnInit {
   };
 
   constructor(private service: LoginService,
-    private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router) { }
+    public activatedRoute: ActivatedRoute,
+    public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
     this.buildForm();

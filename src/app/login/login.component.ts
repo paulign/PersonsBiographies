@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
     }
   };
 
-  constructor(private loginService: LoginService,
-    private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router) { }
+  constructor(public loginService: LoginService,
+    public activatedRoute: ActivatedRoute,
+    public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
     this.buildForm();

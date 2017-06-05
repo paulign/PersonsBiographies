@@ -15,7 +15,7 @@ export class ManageUsersComponent {
   users: User[];
   errorMessage: string;
 
-  constructor(private loginServ: LoginService, private router: Router) { }
+  constructor(public loginServ: LoginService, public router: Router) { }
 
   /*ngOnInit() {
     this.getUsers();

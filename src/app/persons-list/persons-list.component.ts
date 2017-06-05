@@ -17,8 +17,8 @@ export class PersonsListComponent {
   searchValue = "";
   errorMessage: string;
 
-  constructor(private service: BiographiesService, private loginServ: LoginService, private fb: FormBuilder,
-    private router: Router) { }
+  constructor(public service: BiographiesService, public loginServ: LoginService, public fb: FormBuilder,
+    public router: Router) { }
 
   ngOnInit() {
     this.refresh();

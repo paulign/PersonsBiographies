@@ -15,9 +15,9 @@ export class PersonBiographyComponent implements OnInit {
 
   person: Person;
   errorMessage: string;
-  constructor(private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private service: BiographiesService, private loginServ: LoginService) { }
+  constructor(public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public service: BiographiesService, public loginServ: LoginService) { }
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.params["id"];
