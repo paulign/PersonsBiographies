@@ -30,7 +30,7 @@
                 <p>You logged in as <strong>{{loginService.loggedUser.username}}</strong>
                     <button class="btn btn-default btn-xs" (click)="logout()">Logout</button>
                 </p>
-                <p>Your accounts id: <strong>{{loginService.loggedUser.id}}</strong>
+                <p>Your accounts id: <strong>{{loginService.loggedUser._id}}</strong>
             </div>
             <div *ngIf="!loginService.loggedUser" class="navbar-right">
                 <p>Please, <strong>log in</strong> to have more rights <button class="btn btn-default btn-xs" (click)="login()">Login</button></p>
