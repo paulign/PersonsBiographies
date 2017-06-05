@@ -8,7 +8,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class LoginService {
-  private url = "/users";
+  private url = "/api/users";
   redirectUrl: string;
   authToken: any;
   loggedUser: User;
