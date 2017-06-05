@@ -22,11 +22,14 @@ export class AppComponent {
    ngOnInit () {
      this.loginService.getLoggedUserProfile().subscribe(profile => {
       this.loginService.loggedUser = profile.user;
-      console.log(this.loginService.loggedIn());
     },
     err => {
       return false;
     });
+   }
+
+   test () {
+     console.log(this.loginService.loggedIn());
    }
 
 
