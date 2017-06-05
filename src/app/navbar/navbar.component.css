@@ -1,0 +1,11 @@
+.main {
+    min-height: 83vh;
+}
+
+.panel {
+    margin-top: 65px;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}

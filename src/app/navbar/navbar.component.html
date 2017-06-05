@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/home">P.B. <span class="glyphicon glyphicon-barcode"></span></a>
+            <button type="button" class="navbar-toggle collapsed" (click)="toggleState()" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        </div>
+        <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn }">
+
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+                <li routerLinkActive="active"><a routerLink="/persons">Persons</a></li>
+                <li *ngIf="loginService.loggedIn()"  class="dropdown" dropdown routerLinkActive="active">
+                    <a dropdownToggle class="dropdown-toggle">
+    Admin Panel <span class="caret"></span>
+  </a>
+                    <ul class="dropdown-menu" *dropdownMenu role="menu" data-toggle="dropdown">
+                        <li role="menuitem" routerLinkActive="active"><a class="dropdown-item" routerLink="/admin/persons">Manage persons</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem" routerLinkActive="active"><a class="dropdown-item" routerLink="/admin/users">Manage users</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div *ngIf="loginService.loggedUser" class="navbar-right">
+                <p>You logged in as <strong>{{loginService.loggedUser.username}}</strong>
+                    <button class="btn btn-default btn-xs" (click)="logout()">Logout</button>
+                </p>
+                <p>Your accounts id: <strong>{{loginService.loggedUser._id}}</strong>
+            </div>
+            <div *ngIf="!loginService.loggedUser" class="navbar-right">
+                <p>Please, <strong>log in</strong> to have more rights <button class="btn btn-default btn-xs" (click)="login()">Login</button></p>
+                <p>Don't have account? <button class="btn btn-default btn-xs" (click)="signUp()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="panel panel-default">
+    <div class="panel-body main">
+        <router-outlet></router-outlet>
+    </div>
+
+    <footer class="panel-footer footer">
+        Panel footer
+    </footer>
+</div>

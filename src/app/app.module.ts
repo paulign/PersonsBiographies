@@ -22,6 +22,7 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ManageUserDetailsComponent } from './admin/manage-users/manage-user-details/manage-user-details.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ManageUserDetailsComponent } from './admin/manage-users/manage-user-det
     ManageUsersComponent,
     HomeComponent,
     SignUpComponent,
-    ManageUserDetailsComponent
+    ManageUserDetailsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
