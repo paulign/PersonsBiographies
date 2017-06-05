@@ -10,22 +10,24 @@ import './rx-js.operators';
 })
 export class AppComponent {
   currentUser;
-  isIn = false;
-  toggleState() {
-    let bool = this.isIn;
-    this.isIn = bool === false ? true : false;
-  }
+  isIn = false;   
+    toggleState() { 
+        let bool = this.isIn;
+        this.isIn = bool === false ? true : false; 
+    }
 
   constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) {
-  }
+   }
 
-  ngOnInit() {
-    console.log(localStorage.getItem('id_token'));
-    this.loginService.getLoggedUserProfile().subscribe(profile => {
-      console.log(profile);
+   ngOnInit () {
+     this.loginService.getLoggedUserProfile().subscribe(profile => {
       this.loginService.loggedUser = profile.user;
+      console.log(this.loginService.loggedIn());
+    },
+    err => {
+      return false;
     });
-  }
+   }
 
 
   public login() {
@@ -45,7 +47,7 @@ export class AppComponent {
     window.scrollTo(0, 0);
     this.router.navigate(["/admin"]);
   }
-
+  
   public signUp() {
     if (this.router.routerState.snapshot.url != "/login") this.loginService.redirectUrl = this.router.routerState.snapshot.url;
     else this.loginService.redirectUrl = "/home";
