@@ -64,7 +64,7 @@ export class BiographiesService {
         if (res.photoSrc == null) {
             res.photoSrc = "src/app/images/person2.png";
         }
-        let person = new Person(res._id, res.fullName, res.title, res.steps, res.quote, res.photoSrc, res.wikiLink);
+        let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, res.person.photoSrc, res.person.wikiLink);
         return person;
     }
 
