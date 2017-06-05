@@ -62,7 +62,7 @@ export class BiographiesService {
     private extractPerson(response: Response) {
         let res = response.json();
         if (res.photoSrc == null) {
-            res.photoSrc = "./src/app/images/person2.png";
+            res.photoSrc = "../src/app/images/person2.png";
         }
         let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, res.person.photoSrc, res.person.wikiLink);
         return person;
