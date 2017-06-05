@@ -3,7 +3,6 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { User } from '../shared/user';
-import { UserResponsed } from '../shared/userResponsed';
 import { tokenNotExpired } from 'angular2-jwt';
 
 
