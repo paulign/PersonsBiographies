@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class BiographiesService {
-    private url = "/api/persons";
+    private url = "/persons";
     defaultPhotoSrc = "src/app/images/person2.png";
 
     constructor(private http: Http) { }
