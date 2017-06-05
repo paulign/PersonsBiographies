@@ -16,7 +16,8 @@ const PersonSchema = mongoose.Schema({
     },
     steps: {
         type: [
-            { year: String, step: string }
+            { year: String },
+            { step: String }
         ]
     },
     photoSrc: {
