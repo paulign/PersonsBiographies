@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Person = require('../models/person');
 
-router.get('/persons', function(req, res) {
+router.get('/', function(req, res) {
     return Person.find(function (err, persons) {
         if (!err) {
             return res.send(persons);
