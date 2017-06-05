@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: "persons/:id", component: PersonBiographyComponent},
     { path: "login", component: LoginComponent},
     { path: "signup", component: SignUpComponent},
-    { path: "admin", component: AdminComponent, /*canActivate: [LoginGuard],*/ children: [
+    { path: "admin", component: AdminComponent, canActivate: [LoginGuard], children: [
                     {
                         path: "",
                         children: [
