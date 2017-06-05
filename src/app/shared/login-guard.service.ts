@@ -16,7 +16,7 @@ export class LoginGuard {
             return true;
         } 
         
-        else if (!this.loginService.loggedIn) {
+        else if (!this.loginService.loggedIn()) {
             this.loginService.redirectUrl = state.url;
             this.router.navigate(["/login"]);
             return false;
