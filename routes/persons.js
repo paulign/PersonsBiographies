@@ -8,14 +8,13 @@ router.get('/', function(req, res) {
             return res.send(persons);
         } else {
             res.statusCode = 500;
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
             return res.send({ error: 'Server error' });
         }
     });
 });
 
 router.post('/', function(req, res) {
-    var person = new ArticleModel({
+    var person = new Person({
         fullName: req.body.fullName,
         title: req.body.title,
         quote: req.body.quote,
@@ -26,7 +25,6 @@ router.post('/', function(req, res) {
 
     person.save(function (err) {
         if (!err) {
-            log.info("person created");
             return res.send({ status: 'OK', person: person });
         } else {
             console.log(err);
@@ -37,7 +35,6 @@ router.post('/', function(req, res) {
                 res.statusCode = 500;
                 res.send({ error: 'Server error' });
             }
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
         }
     });
 });
@@ -52,14 +49,13 @@ router.get('/:id', function(req, res) {
             return res.send({ status: 'OK', person:person });
         } else {
             res.statusCode = 500;
-            log.error('Internal error(%d): %s',res.statusCode,err.message);
             return res.send({ error: 'Server error' });
         }
     });
 });
 
 router.put('/:id', function (req, res){
-    return Person.findById(req.params.id, function (err, article) {
+    return Person.findById(req.params.id, function (err, person) {
         if(!person) {
             res.statusCode = 404;
             return res.send({ error: 'Not found' });
@@ -74,7 +70,6 @@ router.put('/:id', function (req, res){
 
         return person.save(function (err) {
             if (!err) {
-                log.info("person updated");
                 return res.send({ status: 'OK', person:person });
             } else {
                 if(err.name == 'ValidationError') {
@@ -84,7 +79,6 @@ router.put('/:id', function (req, res){
                     res.statusCode = 500;
                     res.send({ error: 'Server error' });
                 }
-                log.error('Internal error(%d): %s',res.statusCode,err.message);
             }
         });
     });
@@ -98,11 +92,9 @@ router.delete('/:id', function (req, res){
         }
         return person.remove(function (err) {
             if (!err) {
-                log.info("person removed");
                 return res.send({ status: 'OK' });
             } else {
                 res.statusCode = 500;
-                log.error('Internal error(%d): %s',res.statusCode,err.message);
                 return res.send({ error: 'Server error' });
             }
         });
