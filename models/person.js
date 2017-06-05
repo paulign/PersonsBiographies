@@ -15,7 +15,7 @@ const PersonSchema = mongoose.Schema({
         type: String,
     },
     steps: {
-        type: [Object]
+        type: Array,
     },
     photoSrc: {
         type: String,
