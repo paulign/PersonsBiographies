@@ -1,8 +1,0 @@
-.deleteButton {
-    display: none;
-    cursor: pointer;
-}
-
-li:hover .deleteButton {
-    display: inline-block;
-}

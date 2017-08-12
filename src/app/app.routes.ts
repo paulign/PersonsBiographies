@@ -5,9 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component'
 import { AdminComponent } from './admin/admin.component';
 import { ManagePersonsComponent } from './admin/manage-persons/manage-persons.component';
-import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { HomeComponent } from './home/home.component';
-import { ManageUserDetailsComponent } from './admin/manage-users/manage-user-details/manage-user-details.component';
 import { LoginGuard } from './shared/login-guard.service';
 
 export const routes: Routes = [
@@ -27,9 +25,6 @@ export const routes: Routes = [
                         children: [
                             { path: "persons", component: ManagePersonsComponent },
                             { path: "persons/:id", component: ManagePersonsComponent },
-                            { path: "users", component: ManageUsersComponent, children: [
-                                { path: ":id", component: ManageUserDetailsComponent }
-                            ]},
                             { path: "", redirectTo: "persons", pathMatch: "full" }
                         ]
                     }

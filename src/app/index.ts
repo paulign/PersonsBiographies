@@ -4,8 +4,6 @@ export * from "./app.routes";
 //components
 export * from "./admin/admin.component";
 export * from "./admin/manage-persons/manage-persons.component";
-export * from './admin/manage-users/manage-users.component';
-export * from './admin/manage-users/manage-user-details/manage-user-details.component';
 export * from './app.component';
 export * from './home/home.component';
 export * from './login/login.component';

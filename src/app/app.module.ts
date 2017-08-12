@@ -7,7 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from "@angular/router";
 
-import {  routes, AppComponent, BiographiesService, PersonsListComponent, PersonBiographyComponent, LoginComponent, LoginService, SortPipe, AdminComponent, LoginGuard, ManagePersonsComponent, ManageUsersComponent, HomeComponent, SignUpComponent, ManageUserDetailsComponent, NavbarComponent, PanelComponent} from "./index";
+import {  routes, AppComponent, BiographiesService, PersonsListComponent, PersonBiographyComponent, LoginComponent, LoginService, SortPipe, AdminComponent, LoginGuard, ManagePersonsComponent, HomeComponent, SignUpComponent, NavbarComponent, PanelComponent} from "./index";
 
 
 @NgModule({
@@ -19,10 +19,8 @@ import {  routes, AppComponent, BiographiesService, PersonsListComponent, Person
     LoginComponent,
     AdminComponent,
     ManagePersonsComponent,
-    ManageUsersComponent,
     HomeComponent,
     SignUpComponent,
-    ManageUserDetailsComponent,
     NavbarComponent,
     PanelComponent
   ],
