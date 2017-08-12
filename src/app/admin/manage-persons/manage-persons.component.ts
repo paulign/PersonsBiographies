@@ -11,13 +11,13 @@ import { Person } from '../../shared/person'
   styleUrls: ['./manage-persons.component.css']
 })
 export class ManagePersonsComponent {
-  currentPerson: Person;
+  person: Person;
   errorMessage: string;
   personForm: FormGroup;
   editMode: boolean;
   steps: Array<{}> = [];
-  year;
-  event;
+  year: number;
+  event: string;
 
   constructor(public biographiesService: BiographiesService,
     public activatedRoute: ActivatedRoute,
@@ -29,36 +29,6 @@ export class ManagePersonsComponent {
     this.getPersonFromRoute();
   }
 
-  public checkError(element: string, errorType: string) {
-    return this.personForm.get(element).hasError(errorType) &&
-      this.personForm.get(element).touched
-  }
-
-  public onSubmit(personForm: FormGroup) {
-    this.currentPerson.fullName = personForm.value.fullName;
-    this.currentPerson.title = personForm.value.title;
-    this.currentPerson.quote = personForm.value.quote;
-    this.currentPerson.photoSrc = personForm.value.photoSrc;
-    this.currentPerson.wikiLink = personForm.value.wikiLink;
-    this.currentPerson.steps = [];
-
-    if (this.currentPerson._id) {
-      this.currentPerson.steps = this.currentPerson.steps.concat(this.steps);
-      this.biographiesService.updatePerson(this.currentPerson)
-        .subscribe(
-        () => this.goToList(),
-        error => this.errorMessage = error
-        );
-    } else {
-      this.currentPerson.steps = this.currentPerson.steps.concat(this.steps);
-      this.biographiesService.addPerson(this.currentPerson)
-        .subscribe(
-        () => this.goToList(),
-        error => this.errorMessage = error
-        );
-    }
-  }
-
   private getPersonFromRoute() {
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params["id"];
@@ -66,11 +36,11 @@ export class ManagePersonsComponent {
       if (id) {
         this.biographiesService.getPerson(id).subscribe(
           person => {
-            this.currentPerson = person;
-            if (this.currentPerson.photoSrc == this.biographiesService.defaultPhotoSrc) {
-              this.currentPerson.photoSrc = null;
+            this.person = person;
+            if (this.person.photoSrc == this.biographiesService.defaultPhotoSrc) {
+              this.person.photoSrc = null;
             }
-            this.personForm.patchValue(this.currentPerson);
+            this.personForm.patchValue(this.person);
             this.steps = person.steps;
           },
           error => this.errorMessage = error
@@ -78,8 +48,8 @@ export class ManagePersonsComponent {
         this.editMode = true;
       }
       else {
-        this.currentPerson = new Person(null, null, null, null, null, null, null);
-        this.personForm.patchValue(this.currentPerson);
+        this.person = new Person(null, null, null, null, null, null, null);
+        this.personForm.patchValue(this.person);
         this.editMode = false;
       }
     });
@@ -93,6 +63,48 @@ export class ManagePersonsComponent {
       photoSrc: [""],
       wikiLink: [""],
     });
+  }
+
+  public onSubmit(personForm: FormGroup) {
+    this.person.fullName = personForm.value.fullName;
+    this.person.title = personForm.value.title;
+    this.person.quote = personForm.value.quote;
+    this.person.photoSrc = personForm.value.photoSrc;
+    this.person.wikiLink = personForm.value.wikiLink;
+    this.person.steps = [];
+
+    this.person.steps = this.person.steps.concat(this.steps);
+
+    if (this.person._id) {
+      this.biographiesService.updatePerson(this.person)
+        .subscribe(
+        () => this.goToList(),
+        error => this.errorMessage = error
+        );
+
+    } else {
+      this.biographiesService.addPerson(this.person)
+        .subscribe(
+        () => this.goToList(),
+        error => this.errorMessage = error
+        );
+    }
+  }
+
+  private deletePerson(person) {
+    this.biographiesService.deletePerson(person).subscribe(
+      () => {
+        this.router.navigate(["/persons"]);
+      },
+      error => {
+        this.errorMessage = error;
+      }
+    )
+  }
+
+  public checkError(element: string, errorType: string) {
+    return this.personForm.get(element).hasError(errorType) &&
+      this.personForm.get(element).touched
   }
 
   private goToList() {
@@ -122,17 +134,5 @@ export class ManagePersonsComponent {
   private deleteStep(index) {
     this.steps.splice(index, 1);
   }
-
-  private deletePerson(person) {
-    this.biographiesService.deletePerson(person).subscribe(
-      () => {
-        this.router.navigate(["/persons"]);
-      },
-      error => {
-        this.errorMessage = error;
-      }
-    )
-  }
-
 
 }
