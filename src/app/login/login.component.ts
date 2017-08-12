@@ -40,6 +40,18 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
+  private buildForm() {
+    this.loginForm = this.fb.group({
+      "username": ["", Validators.required],
+      "password": ["", [Validators.required, Validators.minLength(3)]]
+    });
+
+    this.loginForm.valueChanges
+      .subscribe(data => this.onValueChange(data));
+
+    this.onValueChange();
+  }
+
   onValueChange(data?: any) {
     if (!this.loginForm) return;
     let form = this.loginForm;
@@ -83,15 +95,4 @@ export class LoginComponent implements OnInit {
     this.router.navigate([redirect]);
   }
 
-  private buildForm() {
-    this.loginForm = this.fb.group({
-      "username": ["", Validators.required],
-      "password": ["", [Validators.required, Validators.minLength(3)]]
-    });
-
-    this.loginForm.valueChanges
-      .subscribe(data => this.onValueChange(data));
-
-    this.onValueChange();
-  }
 }
