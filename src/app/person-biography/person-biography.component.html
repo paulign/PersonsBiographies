@@ -10,7 +10,6 @@
         <h1 class="text-center">{{person?.fullName}}</h1>
         <h2 class="text-center"><em>{{person?.title}}</em></h2>
         <div class="thumbnail"><img src="{{person?.photoSrc}}">
-          <div class="caption text-center">photo.</div>
         </div>
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
           <h3>Here's a time line of {{person?.fullName}}'s life:</h3>
@@ -19,7 +18,7 @@
           </ul>
           <blockquote class="blockquote-reverse">
             <p>"{{person?.quote}}"</p>
-            <footer><cite>Someone says</cite></footer>
+            <footer><cite>{{person?.fullName}} says</cite></footer>
           </blockquote>
           <h3>If you have time, you should read more about this incredible human being on his <a href="{{person?.wikiLink}}"
               target="_blank">Wikipedia entry</a>.</h3>
