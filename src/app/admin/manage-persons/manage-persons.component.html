@@ -31,7 +31,7 @@
 				</div>
 
 				<input type="button" class="btn btn-default" (click)="goToList()" value="Cancel" />
-				<input type="button" class="btn btn-default" (click)="deletePerson(currentPerson)" [disabled]="currentPerson._id" value="Delete" />
+				<input type="button" class="btn btn-default" (click)="deletePerson(currentPerson)" [disabled]="!currentPerson._id" value="Delete" />
 				<input type="submit" class="btn btn-primary" value="Save" [disabled]="personForm.invalid" />
 			</form>
 		</div>
