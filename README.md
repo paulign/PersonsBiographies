@@ -1,4 +1,8 @@
-# MyApp
+#Deploy
+
+This project deployed on heroku.com. You can see it in work there: https://persons-biographies.herokuapp.com
+
+# PersonsBiographies
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
