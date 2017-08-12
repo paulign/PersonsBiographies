@@ -121,20 +121,15 @@ export class ManagePersonsComponent {
   }
 
   private deletePerson(person) {
-    this.activatedRoute.params.forEach((params: Params) => {
-      let id = params["id"];
-
-      if (id) {
-        this.biographiesService.deletePerson(person).subscribe(
-          () => {
-            this.goToList();
-          },
-          error => {
-            this.errorMessage = error;
-          }
-        )
+    this.biographiesService.deletePerson(person).subscribe(
+      () => {
+        this.goToList();
+      },
+      error => {
+        this.errorMessage = error;
       }
-    }
+    )
+  }
 
 
 }
