@@ -55,8 +55,4 @@ export class PersonBiographyComponent implements OnInit {
     this.router.navigate(["/persons"]);
   }
 
-  private testsrc() {
-    alert(this.person.photoSrc);
-  }
-
 }
