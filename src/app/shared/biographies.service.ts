@@ -47,10 +47,11 @@ export class BiographiesService {
     }
 
     private extractPersons(response: Response) {
+        let defaultPhotoSrc = this.defaultPhotoSrc;
         let res = response.json();
         let persons: Person[] = [];
         for (let i = 0; i < res.length; i++) {
-            let photoSrc = res[i].photoSrc || this.defaultPhotoSrc;
+            let photoSrc = res[i].photoSrc || defaultPhotoSrc;
 
             persons.push(new Person(res[i]._id, res[i].fullName, res[i].title, res[i].steps, res[i].quote, photoSrc, res[i].wikiLink));
         }
@@ -58,8 +59,9 @@ export class BiographiesService {
     }
 
     private extractPerson(response: Response) {
+        let defaultPhotoSrc = this.defaultPhotoSrc;
         let res = response.json();
-        let photoSrc = res.photoSrc || this.defaultPhotoSrc;
+        let photoSrc = res.photoSrc || defaultPhotoSrc;
 
         let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, photoSrc, res.person.wikiLink);
         return person;
