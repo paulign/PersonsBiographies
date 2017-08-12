@@ -17,7 +17,7 @@ export class PersonBiographyComponent implements OnInit {
   errorMessage: string;
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
-    public service: BiographiesService, public loginServ: LoginService) { }
+    public biographiesService: BiographiesService, public loginService: LoginService) { }
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.params["id"];
@@ -27,7 +27,7 @@ export class PersonBiographyComponent implements OnInit {
   }
 
   private getPerson(id) {
-    this.service.getPerson(id)
+    this.biographiesService.getPerson(id)
       .subscribe(
       person => this.person = person,
       error => this.errorMessage = error
@@ -40,7 +40,7 @@ export class PersonBiographyComponent implements OnInit {
   }
 
   private deletePerson(person) {
-    this.service.deletePerson(person).subscribe(
+    this.biographiesService.deletePerson(person).subscribe(
       () => {
         this.goToList();
       },

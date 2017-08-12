@@ -18,7 +18,7 @@ export class ManagePersonsComponent {
   year;
   event;
 
-  constructor(public service: BiographiesService,
+  constructor(public biographiesService: BiographiesService,
     public activatedRoute: ActivatedRoute,
     public fb: FormBuilder,
     public router: Router) { }
@@ -43,14 +43,14 @@ export class ManagePersonsComponent {
 
     if (this.currentPerson._id) {
       this.currentPerson.steps = this.currentPerson.steps.concat(this.steps);
-      this.service.updatePerson(this.currentPerson)
+      this.biographiesService.updatePerson(this.currentPerson)
         .subscribe(
         () => this.goToList(),
         error => this.errorMessage = error
         );
     } else {
       this.currentPerson.steps = this.currentPerson.steps.concat(this.steps);
-      this.service.addPerson(this.currentPerson)
+      this.biographiesService.addPerson(this.currentPerson)
         .subscribe(
         () => this.goToList(),
         error => this.errorMessage = error
@@ -63,10 +63,10 @@ export class ManagePersonsComponent {
       let id = params["id"];
 
       if (id) {
-        this.service.getPerson(id).subscribe(
+        this.biographiesService.getPerson(id).subscribe(
           person => {
             this.currentPerson = person;
-            if (this.currentPerson.photoSrc == this.service.defaultPhotoSrc) {
+            if (this.currentPerson.photoSrc == this.biographiesService.defaultPhotoSrc) {
               this.currentPerson.photoSrc = null;
             }
             this.personForm.patchValue(this.currentPerson);
@@ -120,7 +120,16 @@ export class ManagePersonsComponent {
     this.steps.splice(index, 1);
   }
 
-
+  private deletePerson(person) {
+    this.biographiesService.deletePerson(person).subscribe(
+      () => {
+        this.goToList();
+      },
+      error => {
+        this.errorMessage = error;
+      }
+    )
+  }
 
 
 }
