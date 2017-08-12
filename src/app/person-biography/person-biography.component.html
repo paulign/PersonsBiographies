@@ -1,7 +1,6 @@
 <div class="container">
   <div class="jumbotron">
     <div class="row">
-      <button (click)="testsrc()">test</button>
       <div class="col-xs-12" *ngIf="loginServ.loggedIn()">
         <span class="glyphicon glyphicon-trash pull-right admin-button" (click)="deletePerson(person)"></span>
         <span class="glyphicon glyphicon-pencil pull-right admin-button" (click)="editPerson(person)"></span>
