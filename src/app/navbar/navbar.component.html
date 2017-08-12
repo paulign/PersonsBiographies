@@ -14,14 +14,11 @@
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
                 <li routerLinkActive="active"><a routerLink="/persons">Persons</a></li>
-                <li *ngIf="loginService.loggedIn()"  class="dropdown" dropdown routerLinkActive="active">
-                    <a dropdownToggle class="dropdown-toggle">
-    Admin Panel <span class="caret"></span>
+                <li *ngIf="loginService.loggedIn()" class="dropdown" dropdown routerLinkActive="active">
+                    <a dropdownToggle class="dropdown-toggle">Admin Panel <span class="caret"></span>
   </a>
                     <ul class="dropdown-menu" *dropdownMenu role="menu" data-toggle="dropdown">
                         <li role="menuitem" routerLinkActive="active"><a class="dropdown-item" routerLink="/admin/persons">Manage persons</a></li>
-                        <li class="divider dropdown-divider"></li>
-                        <li role="menuitem" routerLinkActive="active"><a class="dropdown-item" routerLink="/admin/users">Manage users</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,4 +36,3 @@
         </div>
     </div>
 </nav>
-
