@@ -29,10 +29,7 @@ export class PersonBiographyComponent implements OnInit {
   private getPerson(id) {
     this.service.getPerson(id)
       .subscribe(
-      person => {
-        this.person = person;
-        alert(person.photoSrc);
-      },
+      person => this.person = person,
       error => this.errorMessage = error
       );
   }
@@ -56,6 +53,10 @@ export class PersonBiographyComponent implements OnInit {
   private goToList() {
     window.scrollTo(0, 0);
     this.router.navigate(["/persons"]);
+  }
+
+  private testsrc() {
+    alert(this.person.photoSrc);
   }
 
 }
