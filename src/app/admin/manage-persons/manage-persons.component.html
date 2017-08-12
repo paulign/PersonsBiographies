@@ -47,7 +47,9 @@
 			<br>
 			<br>
 			<ul *ngIf="steps">
-				<li *ngFor="let step of steps">{{step.year}} - {{step.event}}</li>
+				<li *ngFor="let step of steps, let i = index">{{step.year}} - {{step.event}} 
+						<span class="glyphicon glyphicon-trash pull-right admin-button" (click)="deleteStep(i)"></span>
+				</li>
 			</ul>
 		</div>
 	</div>

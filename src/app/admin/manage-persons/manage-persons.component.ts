@@ -92,7 +92,7 @@ export class ManagePersonsComponent {
     });
   }
 
-  goToList() {
+  private goToList() {
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params["id"];
 
@@ -107,7 +107,7 @@ export class ManagePersonsComponent {
     });
   }
 
-  addStep(year, event) {
+  private addStep(year, event) {
     let step = { year: null, event: null };
     step.year = year;
     step.event = event;
@@ -115,6 +115,12 @@ export class ManagePersonsComponent {
     this.year = null;
     this.event = null;
   }
+
+  private deleteStep(index) {
+    this.steps.splice(index, 1);
+  }
+
+
 
 
 }
