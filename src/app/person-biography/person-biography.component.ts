@@ -29,7 +29,10 @@ export class PersonBiographyComponent implements OnInit {
   private getPerson(id) {
     this.service.getPerson(id)
       .subscribe(
-      person => this.person = person,
+      person => {
+        this.person = person;
+        alert(person.photoSrc);
+      },
       error => this.errorMessage = error
       );
   }
