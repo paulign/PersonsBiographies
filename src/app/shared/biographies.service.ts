@@ -50,18 +50,18 @@ export class BiographiesService {
         let res = response.json();
         let persons: Person[] = [];
         for (let i = 0; i < res.length; i++) {
-            res[i].photoSrc = res[i].photoSrc || "./assets/images/person2.png";
+            let photoSrc = res[i].photoSrc || "./assets/images/person2.png";
 
-            persons.push(new Person(res[i]._id, res[i].fullName, res[i].title, res[i].steps, res[i].quote, res[i].photoSrc, res[i].wikiLink));
+            persons.push(new Person(res[i]._id, res[i].fullName, res[i].title, res[i].steps, res[i].quote, photoSrc, res[i].wikiLink));
         }
         return persons;
     }
 
     private extractPerson(response: Response) {
         let res = response.json();
-        res.photoSrc = res.photoSrc || "./assets/images/person2.png";
+        let photoSrc = res.photoSrc || "./assets/images/person2.png";
 
-        let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, res.person.photoSrc, res.person.wikiLink);
+        let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, photoSrc, res.person.wikiLink);
         return person;
     }
 
