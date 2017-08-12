@@ -7,7 +7,7 @@ export class Person {
     public photoSrc: string;
     public wikiLink: string;
 
-    constructor(_id, fullName, title, steps, quote, photoSrc="http://images.clipartpanda.com/person-clipart-symbol-person-clipart.png", wikiLink) {
+    constructor(_id, fullName, title, steps, quote, photoSrc, wikiLink) {
     this._id = _id;
     this.title = title;
     this.fullName = fullName;
