@@ -12,7 +12,7 @@ import { LoginService } from '../shared/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  currentUser;
+  currentUser: User;
   errorMessage: string;
   loginForm: FormGroup;
 
