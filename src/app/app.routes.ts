@@ -1,12 +1,6 @@
 import { Routes } from "@angular/router";
-import { PersonsListComponent } from './persons-list/persons-list.component';
-import { PersonBiographyComponent } from './person-biography/person-biography.component';
-import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './sign-up/sign-up.component'
-import { AdminComponent } from './admin/admin.component';
-import { ManagePersonsComponent } from './admin/manage-persons/manage-persons.component';
-import { HomeComponent } from './home/home.component';
-import { LoginGuard } from './shared/login-guard.service';
+import { PersonsListComponent, PersonBiographyComponent, LoginComponent, SignUpComponent, AdminComponent, ManagePersonsComponent, HomeComponent, LoginGuard } from "./index";
+
 
 export const routes: Routes = [
     {
