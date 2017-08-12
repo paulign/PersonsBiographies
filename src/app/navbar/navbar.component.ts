@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from "@angular/router";
 import '../rx-js.operators';
 import { LoginService } from '../shared/login.service';
-
+import { User } from '../shared/user';
+ 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,9 +11,11 @@ import { LoginService } from '../shared/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-  currentUser;
-  isIn = false;
-  toggleState() {
+  currentUser: User;
+  isIn: boolean = false;
+  
+  //this function created to correct working dropdown menu
+  private toggleState() {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
   }
@@ -28,11 +31,6 @@ export class NavbarComponent implements OnInit {
         return false;
       });
   }
-
-  test() {
-    console.log(this.loginService.loggedIn());
-  }
-
 
   public login() {
     if (this.router.routerState.snapshot.url != "/login") this.loginService.redirectUrl = this.router.routerState.snapshot.url;
