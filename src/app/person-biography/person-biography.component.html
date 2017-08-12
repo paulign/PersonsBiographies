@@ -11,19 +11,19 @@
         <div class="thumbnail"><img src="{{person.photoSrc}}">
         </div>
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-          <div *ngIf=person.steps>
+          <div *ngIf="person.steps.length > 0">
             <h3>Here's a time line of {{person.fullName}}'s life:</h3>
             <ul>
-              <li *ngFor="let step of person?.steps | sort:'year'"><strong>{{step.year}}</strong> - {{step.event}}</li>
+              <li *ngFor="let step of person.steps | sort:'year'"><strong>{{step.year}}</strong> - {{step.event}}</li>
             </ul>
           </div>
-          <div *ngIf=person.quote>
+          <div *ngIf="person.quote">
             <blockquote class="blockquote-reverse">
               <p>"{{person.quote}}"</p>
               <footer><cite>{{person.fullName}} says</cite></footer>
             </blockquote>
           </div>
-          <div *ngIf=person.wikiLink>
+          <div *ngIf="person.wikiLink">
             <h3>If you have time, you should read more about this incredible human being on his <a href="{{person.wikiLink}}"
                 target="_blank">Wikipedia entry</a>.</h3>
           </div>
