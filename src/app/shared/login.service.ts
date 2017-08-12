@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs/Observable";
+import { User } from '../shared/user';
 import { tokenNotExpired } from 'angular2-jwt';
-import { User } from '../index';
 
 
 @Injectable()
