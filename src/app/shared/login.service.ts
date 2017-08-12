@@ -8,11 +8,10 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class LoginService {
-  private url = "/api/users";
+  private url: string = "/api/users";
   redirectUrl: string;
   authToken: any;
   loggedUser: User;
-  userAvatar: string = "./src/app/images/user.png";
 
   constructor(private http: Http) { }
 
@@ -48,21 +47,21 @@ export class LoginService {
     this.loggedUser = user;
   }
 
-  loadToken() {
+  public loggedIn() {
+    return tokenNotExpired();
+  }
+
+  public logout() {
+    this.authToken = null;
+    this.loggedUser = null;
+    localStorage.clear();
+  }
+
+  private loadToken() {
     if (localStorage.getItem('id_token')) {
       const token = localStorage.getItem('id_token');
       this.authToken = token;
     }
-  }
-
-  loggedIn() {
-    return tokenNotExpired();
-  }
-
-  logout() {
-    this.authToken = null;
-    this.loggedUser = null;
-    localStorage.clear();
   }
 
   private handleError(error: any, cought: Observable<any>): any {

@@ -88,7 +88,7 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  public doSignUp() {
+  private doSignUp() {
     this.loginService.addUser(this.signUpForm.value)
       .subscribe(
       data => {

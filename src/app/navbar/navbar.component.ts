@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   currentUser: User;
   isIn: boolean = false;
   
-  //this function created to correct working dropdown menu
+  //this function created to correct working Bootstrap nawbar in Angular 2
   private toggleState() {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;

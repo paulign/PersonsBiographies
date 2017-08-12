@@ -34,7 +34,7 @@ export class PersonBiographyComponent implements OnInit {
       );
   }
 
-  public editPerson(person: Person) {
+  private editPerson(person: Person) {
     window.scrollTo(0, 0);
     this.router.navigate(["admin", "persons", person._id]);
   }
