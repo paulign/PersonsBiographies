@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { BiographiesService, Person, LoginService, SortPipe } from "../index";
+import { BiographiesService } from "../shared/biographies.service";
+import { Person } from '../shared/person';
+import { LoginService } from '../shared/login.service';
+import { SortPipe } from '../shared/sort.pipe';
 
 
 @Component({
