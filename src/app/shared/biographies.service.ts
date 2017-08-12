@@ -59,7 +59,6 @@ export class BiographiesService {
 
     private extractPerson(response: Response) {
         let res = response.json();
-        let photoSrc = res.photoSrc || "./assets/images/person2.png";
 
         let person = new Person(res.person._id, res.person.fullName, res.person.title, res.person.steps, res.person.quote, photoSrc, res.person.wikiLink);
         return person;
