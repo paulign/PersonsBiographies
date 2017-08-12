@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   isIn: boolean = false;
   
   //this function created to correct working Bootstrap nawbar in Angular 2
-  private toggleState() {
+  public toggleState() {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
   }

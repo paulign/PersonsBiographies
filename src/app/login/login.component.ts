@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.onValueChange();
   }
 
-  onValueChange(data?: any) {
+  private onValueChange(data?: any) {
     if (!this.loginForm) return;
     let form = this.loginForm;
 

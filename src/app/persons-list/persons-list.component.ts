@@ -49,19 +49,19 @@ export class PersonsListComponent {
     this.router.navigate(["persons/" + selected._id]);
   }
 
-  private search() {
+  public search() {
     if (this.searchForm.value.searchValue) {
       this.biographiesService.getPersons().subscribe(persons => this.persons = this.biographiesService.searchPerson(persons, this.searchForm.value.searchValue));
     }
     else this.getPersons();
   }
 
-  private editPerson(person: Person) {
+  public editPerson(person: Person) {
     window.scrollTo(0, 0);
     this.router.navigate(["admin", "persons", person._id]);
   }
 
-  private deletePerson(person) {
+  public deletePerson(person) {
     this.biographiesService.deletePerson(person).subscribe(
       () => {
         this.refresh();

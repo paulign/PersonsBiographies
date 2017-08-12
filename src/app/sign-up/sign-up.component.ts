@@ -88,7 +88,7 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  private doSignUp() {
+  public doSignUp() {
     this.loginService.addUser(this.signUpForm.value)
       .subscribe(
       data => {
@@ -102,7 +102,7 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-  private goNext() {
+  public goNext() {
     let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : "/home";
     window.scrollTo(0, 0);
     this.router.navigate([redirect]);

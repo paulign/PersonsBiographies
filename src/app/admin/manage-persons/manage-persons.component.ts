@@ -91,7 +91,7 @@ export class ManagePersonsComponent {
     }
   }
 
-  private deletePerson(person) {
+  public deletePerson(person) {
     this.biographiesService.deletePerson(person).subscribe(
       () => {
         this.router.navigate(["/persons"]);
@@ -122,7 +122,7 @@ export class ManagePersonsComponent {
     });
   }
 
-  private addStep(year, event) {
+  public addStep(year, event) {
     let step = { year: null, event: null };
     step.year = year;
     step.event = event;
@@ -131,7 +131,7 @@ export class ManagePersonsComponent {
     this.event = null;
   }
 
-  private deleteStep(index) {
+  public deleteStep(index) {
     this.steps.splice(index, 1);
   }
 

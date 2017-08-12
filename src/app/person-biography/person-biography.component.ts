@@ -34,12 +34,12 @@ export class PersonBiographyComponent implements OnInit {
       );
   }
 
-  private editPerson(person: Person) {
+  public editPerson(person: Person) {
     window.scrollTo(0, 0);
     this.router.navigate(["admin", "persons", person._id]);
   }
 
-  private deletePerson(person) {
+  public deletePerson(person) {
     this.biographiesService.deletePerson(person).subscribe(
       () => {
         this.goToList();
@@ -50,7 +50,7 @@ export class PersonBiographyComponent implements OnInit {
     )
   }
 
-  private goToList() {
+  public goToList() {
     window.scrollTo(0, 0);
     this.router.navigate(["/persons"]);
   }
