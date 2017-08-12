@@ -14,6 +14,7 @@ export class ManagePersonsComponent {
   currentPerson: Person;
   errorMessage: string;
   personForm: FormGroup;
+  editMode: boolean;
   steps: Array<{}> = [];
   year;
   event;
@@ -74,10 +75,12 @@ export class ManagePersonsComponent {
           },
           error => this.errorMessage = error
         );
+        this.editMode = true;
       }
       else {
         this.currentPerson = new Person(null, null, null, null, null, null, null);
         this.personForm.patchValue(this.currentPerson);
+        this.editMode = false;
       }
     });
   }
@@ -123,7 +126,7 @@ export class ManagePersonsComponent {
   private deletePerson(person) {
     this.biographiesService.deletePerson(person).subscribe(
       () => {
-        this.goToList();
+        this.router.navigate(["/persons"]);
       },
       error => {
         this.errorMessage = error;
