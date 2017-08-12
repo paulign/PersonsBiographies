@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../shared/login.service';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from "@angular/router";
 import '../rx-js.operators';
+import { LoginService } from '../shared/login.service';
 
 @Component({
   selector: 'app-navbar',

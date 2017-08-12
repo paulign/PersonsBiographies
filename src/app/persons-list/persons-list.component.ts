@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { BiographiesService } from "../shared/biographies.service";
-import { Person } from '../shared/person'
-import { LoginService } from '../shared/login.service';
+import { BiographiesService, Person, LoginService } from "../index";
 
 
 @Component({
@@ -17,7 +15,7 @@ export class PersonsListComponent {
   searchValue = "";
   errorMessage: string;
 
-  constructor(public service: BiographiesService, public loginServ: LoginService, public fb: FormBuilder,
+  constructor(public biographiesService: BiographiesService, public loginService: LoginService, public fb: FormBuilder,
     public router: Router) { }
 
   ngOnInit() {
@@ -25,7 +23,7 @@ export class PersonsListComponent {
   }
 
   private getPersons() {
-    this.service.getPersons().subscribe(
+    this.biographiesService.getPersons().subscribe(
       persons => {
         this.persons = persons;
       },
@@ -51,7 +49,7 @@ export class PersonsListComponent {
 
   public search() {
     if (this.searchForm.value.searchValue) {
-      this.service.getPersons().subscribe(persons => this.persons = this.service.searchPerson(persons, this.searchForm.value.searchValue));
+      this.biographiesService.getPersons().subscribe(persons => this.persons = this.biographiesService.searchPerson(persons, this.searchForm.value.searchValue));
     }
     else this.getPersons();
   }
@@ -62,7 +60,7 @@ export class PersonsListComponent {
   }
 
   private deletePerson(person) {
-    this.service.deletePerson(person).subscribe(
+    this.biographiesService.deletePerson(person).subscribe(
       () => {
         this.refresh();
       },
@@ -70,18 +68,6 @@ export class PersonsListComponent {
         this.errorMessage = error;
       }
     )
-  }
-
-  public login() {
-    this.router.navigate(["/login"]);
-  }
-
-  public logout() {
-    this.loginServ.logout();
-  }
-
-  public admin() {
-    this.router.navigate(["/admin"]);
   }
 
 }

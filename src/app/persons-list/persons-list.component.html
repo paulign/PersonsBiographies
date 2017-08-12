@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-4" *ngFor="let person of persons">
             <div class="thumbnail">
-                <div class="col-sm-12" *ngIf="loginServ.isAdmin">
+                <div class="col-sm-12" *ngIf="loginService.isAdmin">
                     <span class="glyphicon glyphicon-trash pull-right admin-button" (click)="deletePerson(person)"></span>
                     <span class="glyphicon glyphicon-pencil pull-right admin-button" (click)="editPerson(person)"></span>
                 </div>

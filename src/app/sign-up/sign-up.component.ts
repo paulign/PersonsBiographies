@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { User } from '../shared/user';
-import { LoginService } from '../shared/login.service';
+import { User, LoginService } from '../index';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
 
   };
 
-  constructor(private service: LoginService,
+  constructor(private loginService: LoginService,
     public activatedRoute: ActivatedRoute,
     public fb: FormBuilder,
     public router: Router) { }
@@ -89,7 +89,7 @@ export class SignUpComponent implements OnInit {
   }
 
   public doSignUp() {
-    this.service.addUser(this.signUpForm.value)
+    this.loginService.addUser(this.signUpForm.value)
       .subscribe(
       data => {
         console.log(data);
@@ -103,7 +103,7 @@ export class SignUpComponent implements OnInit {
   }
 
   private goNext() {
-    let redirect = this.service.redirectUrl ? this.service.redirectUrl : "/home";
+    let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : "/home";
     window.scrollTo(0, 0);
     this.router.navigate([redirect]);
   }
